@@ -33,6 +33,9 @@
                     <img src="{{ url_for('static', filename='img/book.png') }}" alt="" class="img-fluid rounded-circle w-50 mb-3">
                     <h3><a href = "{{url_for('viewBookById', book_id = i.id) }}">{{i.name}}</a></h3>
                     <p>{{i.description}}</p>
+                      <a href="{{url_for('removeFromFavourites', user_id = single_user.id, book_id = i.id) }}">
+                        Remove from Favourite
+                        </a>
                   </div>
                 </div>
               </div>
@@ -65,6 +68,10 @@
                     <img src="{{ url_for('static', filename='img/book.png') }}" alt="" class="img-fluid rounded-circle w-50 mb-3">
                     <h3><a href = "{{url_for('viewBookById', book_id = i.id) }}">{{i.name}}</a></h3>
                     <p>{{i.description}}</p>
+                      <a href="{{url_for('setFavourite', user_id = single_user.id, book_id = i.id) }}">
+                        Make Favourite
+                        </a>
+
                   </div>
                 </div>
               </div>
