@@ -54,10 +54,11 @@ def viewBookByName():
     session = DBSession()
     name = request.args.get('name', '')
     try:
-        book = session.query(Books).filter_by(name=name).one()
+        book = session.query(Books).filter_by(name=name).all()
         return render_template('singleBook.html', book=book)
     except:
-        return "No Record found."
+        book = []
+        return render_template('singleBook.html', book=book)
 
 @app.route("/users")
 def allUsers():

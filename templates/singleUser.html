@@ -1,79 +1,135 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
-<html lang="en">
-    <head>
-        <script>
-           p{
-                margin-top: 0px;
-                margin-bottom: 0px;
-            }
-        </script>
-    </head>
+{% block search_bar %}
+    <header id="home-section">
+        <div class="dark-overlay">
+            <div class="home-inner container">
+                <header class="masthead">
 
-    <body>
-
-        <div class = 'flash'>
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-
-                <ul>
-                    {% for message in messages %}
-                        <li> <strong> {{ message }} </strong> </li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-            {% endwith %}
-
+                </header>
+            </div>
         </div>
+    </header>
+{% endblock %}
 
-        <h1>User: {{ single_user.name }}</h1>
+{% block content %}
 
-        <hr>
+    <center><h1 style="color:white">User: {{ single_user.name }}</h1></center>
 
-        <h2>Favourite Books: </h2>
-        {% if favourite_books|length>0 %}
+    <section id="authors" class="my-5 text-center">
+
+        <h3 style="color:white">Favourite Books</h3>
+    {% if favourite_books|length>0 %}
+
+      <div class="container">
+
+          <div class="row">
+
             {% for i in favourite_books %}
 
-            <div>
-                <b>{{i.name}}</b><br/>
-                {{i.description}}<br/>
-                <br/>
-
-                <a href="{{url_for('removeFromFavourites', user_id=single_user.id, book_id=i.id) }}">Remove from Favourites</a>
-                <br><br>
-
-            </div>
+              <div class="col-lg-3 col-md-6 mt-4">
+                <div class="card">
+                  <div class="card-body">
+                    <img src="{{ url_for('static', filename='img/book.png') }}" alt="" class="img-fluid rounded-circle w-50 mb-3">
+                    <h3><a href = "{{url_for('viewBookById', book_id = i.id) }}">{{i.name}}</a></h3>
+                    <p>{{i.description}}</p>
+                  </div>
+                </div>
+              </div>
 
             {% endfor %}
 
-        {% else %}
+          </div>
+        </div>
 
-            <p>No favourite books found.</p>
+      {% else %}
+          <p style="color:white">No Records found.</p>
+      {% endif %}
 
-        {% endif %}
-        <br>
-        <hr>
-        <h2>Other Books: </h2>
-        {% if books|length>0 %}
+      </section>
+
+    <section id="authors" class="my-5 text-center">
+
+        <h3 style="color:white">Other Books</h3>
+    {% if books|length>0 %}
+
+      <div class="container">
+
+          <div class="row">
 
             {% for i in books %}
 
-            <div>
-                <b>{{i.name}}</b><br/>
-                {{i.description}}<br/>
-                <br/>
-
-                <a href="{{url_for('setFavourite', user_id=single_user.id, book_id=i.id) }}">Add to Favourites</a>
-                <br><br>
-            </div>
+              <div class="col-lg-3 col-md-6 mt-4">
+                <div class="card">
+                  <div class="card-body">
+                    <img src="{{ url_for('static', filename='img/book.png') }}" alt="" class="img-fluid rounded-circle w-50 mb-3">
+                    <h3><a href = "{{url_for('viewBookById', book_id = i.id) }}">{{i.name}}</a></h3>
+                    <p>{{i.description}}</p>
+                  </div>
+                </div>
+              </div>
 
             {% endfor %}
 
-        {% else %}
+          </div>
+        </div>
 
-            <p>No other book found.</p>
+      {% else %}
+          <p style="color:white">No Records found.</p>
+      {% endif %}
 
-        {% endif %}
-    </body>
+      </section>
 
-</html>
+    <br><br>
+
+{% endblock %}
+
+
+
+
+<hr>
+
+<h2>Favourite Books: </h2>
+{% if favourite_books|length>0 %}
+    {% for i in favourite_books %}
+
+    <div>
+        <b>{{i.name}}</b><br/>
+        {{i.description}}<br/>
+        <br/>
+
+        <a href="{{url_for('removeFromFavourites', user_id=single_user.id, book_id=i.id) }}">Remove from Favourites</a>
+        <br><br>
+
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+    <p>No favourite books found.</p>
+
+{% endif %}
+<br>
+<hr>
+<h2>Other Books: </h2>
+{% if books|length>0 %}
+
+    {% for i in books %}
+
+    <div>
+        <b>{{i.name}}</b><br/>
+        {{i.description}}<br/>
+        <br/>
+
+        <a href="{{url_for('setFavourite', user_id=single_user.id, book_id=i.id) }}">Add to Favourites</a>
+        <br><br>
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+    <p>No other book found.</p>
+
+{% endif %}

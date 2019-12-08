@@ -1,42 +1,9 @@
-<!DOCTYPE html>
+<h1>{{book.name}}</h1>
 
-<html lang="en">
-    <head>
-        <script>
-           p{
-                margin-top: 0px;
-                margin-bottom: 0px;
-            }
-        </script>
-    </head>
+<div>
+    <b>{{book.name}}</b><br/>
+    {{book.description}}<br/>
+    {{book.img_url}}<br/>
+    <br/>
 
-    <body>
-
-        <div class = 'flash'>
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-
-                <ul>
-                    {% for message in messages %}
-                        <li> <strong> {{ message }} </strong> </li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-            {% endwith %}
-
-        </div>
-
-
-        <h1>{{book.name}}</h1>
-
-        <div>
-            <b>{{book.name}}</b><br/>
-            {{book.description}}<br/>
-            {{book.img_url}}<br/>
-            <br/>
-
-        </div>
-
-    </body>
-
-</html>
+</div>

@@ -1,25 +1,21 @@
 {% extends 'base.html' %}
 
-{#% block search_bar %}
-    {{ super() }}
-{% endblock %#}
+{% block search_bar %}
+    <header id="home-section">
+        <div class="dark-overlay">
+            <div class="home-inner container">
+                <header class="masthead">
+
+                </header>
+            </div>
+        </div>
+    </header>
+{% endblock %}
 
 {% block content %}
-    <div class = 'flash'>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-
-            <ul>
-                {% for message in messages %}
-                    <li> <strong> {{ message }} </strong> </li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-        {% endwith %}
-
-    </div>
-
+    <center><h1 style="color:white">All Users</h1></center>
     <section id="authors" class="my-5 text-center">
+
 
     {% if users|length>0 %}
 

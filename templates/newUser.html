@@ -1,20 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1> New User </h1>
+{% extends 'base.html' %}
 
-    <form action="{{url_for('newUser')}}" method = 'POST'>
+{% block search_bar %}
+    <header id="home-section">
+        <div class="dark-overlay">
+            <div class="home-inner container">
+                <header class="masthead">
 
-        <p>Name of the User:</p>
+                </header>
+            </div>
+        </div>
+    </header>
+{% endblock %}
 
-        <input type='text' size='60' name='name'>
+{% block content %}
 
-        <input type='submit' value='Create'>
+<section id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h3 style="color:white">New User</h3>
+          <p class="lead" style="color:white">Enter the name of the new user.</p>
+          <form action="{{url_for('newUser')}}" method = 'POST'>
+            <div class="input-group input-group-lg mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fas fa-user"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" placeholder="Name" name='name' required>
+            </div>
 
-    </form>
-</body>
-</html>
+            <input type="submit" value="Create New User" class="btn btn-primary btn-block btn-lg">
+          </form>
+        </div>
+      </div>
+    </div>
+</section>
+
+{% endblock %}
