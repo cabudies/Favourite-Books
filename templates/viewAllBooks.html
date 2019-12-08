@@ -1,43 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-    <div class = 'flash'>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
+{% block search_bar %}
+    <header id="home-section">
+        <div class="dark-overlay">
+            <div class="home-inner container">
+                <header class="masthead">
 
-            <ul>
-                {% for message in messages %}
-                    <li> <strong> {{ message }} </strong> </li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-        {% endwith %}
-
-    </div>
-
-    <center><h1>Welcome to Books Shelf</h1></center>
-
-    <br><br>
-    <center><p>Find below all the books and click on any book to view the details of the book.</p></center>
-    <br/>
-
-    <a href="{{url_for('homePage')}}">Back to Home Page</a>
-    {% if books|length>0 %}
-
-        {% for i in books %}
-
-        <div>
-            <h3><a href = "{{url_for('viewBookById', book_id = i.id) }}">{{i.name}}</a></h3>
+                </header>
+            </div>
         </div>
-        {% endfor %}
+    </header>
+{% endblock %}
+
+{% block content %}
+
+<center><h1 style="color:white">Searched Books</h1></center>
+
+<section id="authors" class="my-5 text-center">
+
+{% if books|length>0 %}
+    <div class="container">
+
+          <div class="row">
+
+            {% for i in books %}
+
+              <div class="col-lg-3 col-md-6 mt-4">
+                <div class="card">
+                  <div class="card-body">
+                    <img src="{{ url_for('static', filename='img/book.png') }}" alt="" class="img-fluid rounded-circle w-50 mb-3">
+                    <h3><a href = "{{url_for('viewBookById', book_id = i.id) }}">{{i.name}}</a></h3>
+                  </div>
+                </div>
+              </div>
+
+            {% endfor %}
+
+          </div>
+        </div>
 
     {% else %}
-        <p>No Records found.</p>
+        <p style="color:white">No Records found.</p>
     {% endif %}
-</body>
-</html>
+
+      </section>
+
+    <br><br>
+
+{% endblock %}

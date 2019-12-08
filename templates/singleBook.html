@@ -1,9 +1,41 @@
-<h1>{{book.name}}</h1>
+{% extends 'base.html' %}
 
-<div>
-    <b>{{book.name}}</b><br/>
-    {{book.description}}<br/>
-    {{book.img_url}}<br/>
-    <br/>
+{% block search_bar %}
+    <header id="home-section">
+        <div class="dark-overlay">
+            <div class="home-inner container">
+                <header class="masthead">
 
-</div>
+                </header>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
+{% block content %}
+
+<center><h1 style="color:white">Details of the book - {{book.name}}</h1></center>
+
+    <section id="authors" class="my-5 text-center">
+        <div class="container">
+
+          <div class="row">
+
+            <div class="col-lg-12 col-md-12 mt-4">
+                <div class="card">
+                  <div class="card-body">
+                    <img src="{{ url_for('static', filename='img/book.png') }}" alt="" class="img-fluid rounded-circle w-50 mb-3">
+                    <h3><a href = "{{url_for('viewBookById', book_id = book.id) }}">{{book.name}}</a></h3>
+                    {{book.description}}<br/>
+                    {{book.img_url}}<br/>
+                  </div>
+                </div>
+              </div>
+
+          </div>
+        </div>
+    </section>
+
+    <br><br>
+
+{% endblock %}

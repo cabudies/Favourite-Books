@@ -54,11 +54,11 @@ def viewBookByName():
     session = DBSession()
     name = request.args.get('name', '')
     try:
-        book = session.query(Books).filter_by(name=name).all()
-        return render_template('singleBook.html', book=book)
+        books = session.query(Books).filter_by(name=name).all()
+        return render_template('viewAllBooks.html', books=books)
     except:
-        book = []
-        return render_template('singleBook.html', book=book)
+        books = []
+        return render_template('viewAllBooks.html', books=books)
 
 @app.route("/users")
 def allUsers():

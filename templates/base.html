@@ -12,7 +12,7 @@
 
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
 		<div class="container">
-			<a href="#" class="navbar-brand">Book Shelf</a>
+			<a href="{{ url_for('homePage') }}" class="navbar-brand">Book Shelf</a>
 			<button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
 				<span class="navbar-toggle-icon"></span>
 			</button>
@@ -54,7 +54,7 @@
                             <br>
                             <center><p style="color:white">Find below all the books and their description</p></center>
                             <form id="search-form" action="{{ url_for('viewBookByName') }}">
-                                <input id="search-keyword" type="text" name="name" placeholder="e.g. Enter book name to search for" class=""required>
+                                <input id="search-keyword" type="text" name="name" placeholder="e.g. Enter book name to search for" required>
                                 <input id="submit-btn" type="submit" value="Search">
                             </form>
                         </div>
