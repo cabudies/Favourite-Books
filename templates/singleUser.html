@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <script>
+           p{
+                margin-top: 0px;
+                margin-bottom: 0px;
+            }
+        </script>
+    </head>
+
+    <body>
+
+        <div class = 'flash'>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+
+                <ul>
+                    {% for message in messages %}
+                        <li> <strong> {{ message }} </strong> </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% endwith %}
+
+        </div>
+
+        <h1>User: {{ single_user.name }}</h1>
+
+        <hr>
+
+        <h2>Favourite Books: </h2>
+        {% if favourite_books|length>0 %}
+            {% for i in favourite_books %}
+
+            <div>
+                <b>{{i.name}}</b><br/>
+                {{i.description}}<br/>
+                <br/>
+
+                <a href="{{url_for('removeFromFavourites', user_id=single_user.id, book_id=i.id) }}">Remove from Favourites</a>
+                <br><br>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p>No favourite books found.</p>
+
+        {% endif %}
+        <br>
+        <hr>
+        <h2>Other Books: </h2>
+        {% if books|length>0 %}
+
+            {% for i in books %}
+
+            <div>
+                <b>{{i.name}}</b><br/>
+                {{i.description}}<br/>
+                <br/>
+
+                <a href="{{url_for('setFavourite', user_id=single_user.id, book_id=i.id) }}">Add to Favourites</a>
+                <br><br>
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p>No other book found.</p>
+
+        {% endif %}
+    </body>
+
+</html>

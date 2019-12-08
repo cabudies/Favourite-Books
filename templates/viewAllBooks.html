@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div class = 'flash'>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+
+            <ul>
+                {% for message in messages %}
+                    <li> <strong> {{ message }} </strong> </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
+
+    </div>
+
+    <center><h1>Welcome to Books Shelf</h1></center>
+
+    <br><br>
+    <center><p>Find below all the books and click on any book to view the details of the book.</p></center>
+    <br/>
+
+    <a href="{{url_for('homePage')}}">Back to Home Page</a>
+    {% if books|length>0 %}
+
+        {% for i in books %}
+
+        <div>
+            <h3><a href = "{{url_for('viewBookById', book_id = i.id) }}">{{i.name}}</a></h3>
+        </div>
+        {% endfor %}
+
+    {% else %}
+        <p>No Records found.</p>
+    {% endif %}
+</body>
+</html>

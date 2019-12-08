@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <script>
+           p{
+                margin-top: 0px;
+                margin-bottom: 0px;
+            }
+        </script>
+    </head>
+
+    <body>
+
+        <div class = 'flash'>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+
+                <ul>
+                    {% for message in messages %}
+                        <li> <strong> {{ message }} </strong> </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% endwith %}
+
+        </div>
+
+        <h1>Select any book to make it favourite for user: {{ single_user.name }}</h1>
+
+        {% if books|length>0 %}
+
+            {% for i in books %}
+
+            <div>
+                <h3>
+                    <a href="{{url_for('setFavourite', user_id = single_user.id, book_id = i.id) }}">
+                        Make Favourite
+                    </a>
+                </h3>
+            </div>
+            {% endfor %}
+
+        {% else %}
+            <p>No Records found.</p>
+        {% endif %}
+    </body>
+
+</html>

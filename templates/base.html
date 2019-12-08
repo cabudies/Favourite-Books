@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Book Shelf</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <!-- Loading Bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body style="">
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+		<div class="container">
+			<a href="#" class="navbar-brand">Book Shelf</a>
+			<button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+				<span class="navbar-toggle-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a href="#home" class="nav-link">
+							Home
+						</a>
+					</li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            Users</a>
+                        <div class="dropdown-menu">
+                            <a href="{{ url_for('newUser') }}" class="dropdown-item">Add New User</a>
+                            <a href="{{ url_for('allUsers') }}" class="dropdown-item">View All Users</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            Books</a>
+                        <div class="dropdown-menu">
+                            <a href="{{ url_for('newBook') }}" class="dropdown-item">Add New Book</a>
+                            <a href="{{ url_for('homePage') }}" class="dropdown-item">View All Books</a>
+                        </div>
+                    </li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+    {% block search_bar %}
+        <header id="home-section">
+            <div class="dark-overlay">
+                <div class="home-inner container">
+                    <header class="masthead">
+                        <div class="site-container">
+                            <center><h1>Welcome to Books Shelf</h1></center>
+                            <br>
+                            <center><p style="color:white">Find below all the books and their description</p></center>
+                            <form id="search-form" action="{{ url_for('viewBookByName') }}">
+                                <input id="search-keyword" type="text" name="name" placeholder="e.g. Enter book name to search for" class=""required>
+                                <input id="submit-btn" type="submit" value="Search">
+                            </form>
+                        </div>
+                    </header>
+                </div>
+            </div>
+        </header>
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" ></script>
+</body>
+</html>
